@@ -5,11 +5,12 @@ const table = document.querySelectorAll('table');
 const data = [];
 
 export default function init() {
-  if(localStorage.getItem('dataLS')!=null){
-  const d = JSON.parse(localStorage.getItem('dataLS'));
-  d.forEach((element) => {
-    data.push(new Note(element.name, element.status));
-  });}
+  if (localStorage.getItem('dataLS') != null) {
+    const d = JSON.parse(localStorage.getItem('dataLS'));
+    d.forEach((element) => {
+      data.push(new Note(element.name, element.status));
+    });
+  }
 }
 init();
 
