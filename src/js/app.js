@@ -1,70 +1,44 @@
-// import data from './repo.js';
 import Note from './Note.js';
 
 const table = document.querySelectorAll('table');
 
-let data = [];
+const data = [];
 
 export default function init() {
-  let d = JSON.parse(localStorage.getItem("dataLS"));
-  d.forEach(element => {
+  const d = JSON.parse(localStorage.getItem('dataLS'));
+  d.forEach((element) => {
     data.push(new Note(element.name, element.status));
   });
 }
 init();
 
 function updateLS() {
-  let serialObj = JSON.stringify(data);
-  localStorage.setItem("dataLS", serialObj);
+  const serialObj = JSON.stringify(data);
+  localStorage.setItem('dataLS', serialObj);
 }
-// let d = JSON.parse(localStorage.getItem("dataLS"));
-// d.forEach(element => {
-//   data.push(new Note(element.name, element.status));
-// });
 
-
-// let coin;
-// let coinPlus = true;
-
-// function edit(but, index) {
-//   but.addEventListener('click', (e) => {
-//     const node = inputName.parentElement.childNodes;
-//     node[5].innerText = ' ';
-//     node[11].innerText = ' ';
-//     if (divEdit.style.display !== 'block') {
-//       divEdit.style.display = 'block';
-//     } else if (divEdit.style.display === 'block' && coin === Number(e.target.getAttribute('num'))) {
-//       divEdit.style.display = 'none';
-//     }
-//     inputName.value = data[index].name;
-//     inputPrise.value = data[index].prise;
-//     coin = index;
-//     coinPlus = true;
-//   });
-// }
 
 function add() {
-
   for (let index = 0; index < table.length; index++) {
     const element = table[index];
-    element.innerText = "";
+    element.innerText = '';
     if (index === 0) {
       const trTitle = document.createElement('tr');
       const thTitle = document.createElement('th');
-      thTitle.innerText = "TODO";
+      thTitle.innerText = 'TODO';
       thTitle.classList.add('title');
       trTitle.appendChild(thTitle);
       element.appendChild(trTitle);
     } else if (index === 1) {
       const trTitle = document.createElement('tr');
       const thTitle = document.createElement('th');
-      thTitle.innerText = "IN PROGRESS";
+      thTitle.innerText = 'IN PROGRESS';
       trTitle.appendChild(thTitle);
       element.appendChild(trTitle);
     } else if (index === 2) {
       const trTitle = document.createElement('tr');
       const thTitle = document.createElement('th');
-      thTitle.innerText = "DONE";
+      thTitle.innerText = 'DONE';
       trTitle.appendChild(thTitle);
       element.appendChild(trTitle);
     }
@@ -82,14 +56,14 @@ function add() {
     thName.appendChild(butDel);
     tr.appendChild(thName);
 
-    if (element.status === "TODO") {
+    if (element.status === 'TODO') {
       table[0].appendChild(tr);
-    } else if (element.status === "IN PROGRESS") {
+    } else if (element.status === 'IN PROGRESS') {
       table[1].appendChild(tr);
-    } else if (element.status === "DONE") {
+    } else if (element.status === 'DONE') {
       table[2].appendChild(tr);
     }
-  };
+  }
 
   for (let index = 0; index < table.length; index++) {
     const element = table[index];
@@ -97,22 +71,22 @@ function add() {
     const thPlus = document.createElement('th');
     const butPlus = document.createElement('a');
     butPlus.classList.add('plus');
-    butPlus.innerHTML = '&#10011' + " Add another card";
-    butPlus.setAttribute('id', "plus");
+    butPlus.innerHTML = '&#10011' + ' Add another card';
+    butPlus.setAttribute('id', 'plus');
     butPlus.setAttribute('num', index);
 
     thPlus.appendChild(butPlus);
     trPlus.appendChild(thPlus);
     if (index === 0) {
-      butPlus.setAttribute('num', "TODO");
+      butPlus.setAttribute('num', 'TODO');
     } else if (index === 1) {
-      butPlus.setAttribute('num', "IN PROGRESS");
+      butPlus.setAttribute('num', 'IN PROGRESS');
     } else if (index === 2) {
-      butPlus.setAttribute('num', "DONE");
+      butPlus.setAttribute('num', 'DONE');
     }
 
     element.appendChild(trPlus);
-  };
+  }
   plus();
   del();
   move();
@@ -120,9 +94,8 @@ function add() {
 
 function del() {
   const butDel = document.querySelectorAll('.del');
-  butDel.forEach(element => {
+  butDel.forEach((element) => {
     element.addEventListener('click', (e) => {
-      console.log(e.target.getAttribute('num'));
       data.splice(e.target.getAttribute('num'), 1);
       add();
       updateLS();
@@ -132,17 +105,15 @@ function del() {
 
 function plus() {
   const butPlus = document.querySelectorAll('.plus');
-  // console.log(butPlus);
-  // console.log(Array.from(butPlus));
-  butPlus.forEach(element => {
+  butPlus.forEach((element) => {
     element.addEventListener('click', (e) => {
-      e.target.parentElement.style.display = "none";
+      e.target.parentElement.style.display = 'none';
       const tab = e.target.parentElement.parentElement;
       const trNew = document.createElement('tr');
       const thNew = document.createElement('th');
       const inputNew = document.createElement('input');
       // inputNew.type = "text";
-      inputNew.placeholder = "Enter a title for this card...";
+      inputNew.placeholder = 'Enter a title for this card...';
       thNew.appendChild(inputNew);
       trNew.appendChild(thNew);
       // tab.appendChild(trNew);
@@ -155,7 +126,7 @@ function plus() {
       butAdd.classList.add('add');
       butCross.classList.add('plus');
       butCross.innerHTML = '&#9747';
-      butCross.setAttribute('id', "cross");
+      butCross.setAttribute('id', 'cross');
       thCross.appendChild(butAdd);
       thCross.appendChild(butCross);
       trCross.appendChild(thCross);
@@ -163,22 +134,17 @@ function plus() {
       butCross.addEventListener('click', () => {
         trCross.remove();
         trNew.remove();
-        e.target.parentElement.style.display = "inline-block";
+        e.target.parentElement.style.display = 'inline-block';
         add();
-      
       });
       butAdd.addEventListener('click', () => {
         trCross.remove();
         trNew.remove();
-        e.target.parentElement.style.display = "inline-block";
-        console.log(inputNew.value);
-        console.log(e.target.getAttribute('num'));
+        e.target.parentElement.style.display = 'inline-block';
         data.push(new Note(inputNew.value, e.target.getAttribute('num')));
         add();
-      updateLS();
-        
+        updateLS();
       });
-      
     });
   });
 }
@@ -189,7 +155,7 @@ function move() {
   let ghostEl = null;
 
   divMove.addEventListener('mousedown', (evt) => {
-    // evt.preventDefault();
+
     if (!evt.target.classList.contains('dataText')) {
       return;
     }
@@ -232,8 +198,6 @@ function move() {
     } else {
       return;
     }
-    console.log(draggedEl.firstChild.textContent);
-    console.log(closest.parentElement.parentElement.firstChild.innerText);
 
     data.splice(draggedEl.children[0].getAttribute('num'), 1);
 
@@ -245,97 +209,4 @@ function move() {
   });
 }
 
-
-
-
-
-
-// function move() {
-//   const trMove = document.querySelectorAll('td');
-//   trMove.forEach(element => {
-//     let ball = element;
-//     ball.addEventListener('mousedown', (event) => { 
-
-//   // ball.onmousedown = function(event) { // (1) отследить нажатие
-
-//     // (2) подготовить к перемещению:
-//     // разместить поверх остального содержимого и в абсолютных координатах
-//     ball.style.position = 'absolute';
-//     ball.style.zIndex = 1000;
-//     // переместим в body, чтобы мяч был точно не внутри position:relative
-//     document.body.append(ball);
-//     // и установим абсолютно спозиционированный мяч под курсор
-
-//     moveAt(event.pageX, event.pageY);
-
-//     // передвинуть мяч под координаты курсора
-//     // и сдвинуть на половину ширины/высоты для центрирования
-//     itemsEl.addEventListener('mousemove', () => { 
-//     // function moveAt(pageX, pageY) {
-//       ball.style.left = event.pageX - ball.offsetWidth / 2 + 'px';
-//       ball.style.top = event.pageY - ball.offsetHeight / 2 + 'px';
-//     });
-
-//     // function onMouseMove(event) {
-//     //   moveAt(event.pageX, event.pageY);
-//     // }
-
-//     // (3) перемещать по экрану
-//     // document.addEventListener('mousemove', onMouseMove);
-
-//     // (4) положить мяч, удалить более ненужные обработчики событий
-//     // ball.onmouseup = function() {
-//     //   ball.addEventListener('mouseup', (evt) => {
-//     //   document.removeEventListener('mousemove', onMouseMove);
-//     //   ball.onmouseup = null;
-//     // });
-
-//   });
-// });
-// }
-
-
-
-// function close() {
-//   butClose.addEventListener('click', () => {
-//     divEdit.style.display = 'none';
-//   });
-// }
-
-// function save() {
-//   butSave.addEventListener('click', (e) => {
-//     const node = e.target.parentElement.childNodes;
-//     node[5].innerText = ' ';
-//     node[11].innerText = ' ';
-//     if (!coinPlus) {
-//       if (node[3].value.length === 0) {
-//         node[5].innerText = 'Name field is empty';
-//         node[11].innerText = ' ';
-//       } else if (node[9].value.length === 0 || Number(node[9].value) <= 0 || Number.isNaN(Number(node[9].value))) {
-//         node[11].innerText = 'Prise field error';
-//         node[5].innerText = ' ';
-//       } else {
-//         const dataNew = new Note(node[3].value, Number(node[9].value));
-//         data.push(dataNew);
-//         divEdit.style.display = 'none';
-//         add(data);
-//       }
-//     } else if (node[3].value.length === 0) {
-//       node[5].innerText = 'Name field is empty';
-//       node[11].innerText = ' ';
-//     } else if (node[9].value.length === 0 || Number(node[9].value) <= 0 || Number.isNaN(Number(node[9].value))) {
-//       node[11].innerText = 'Prise field error';
-//       node[5].innerText = ' ';
-//     } else {
-//       data[coin].name = node[3].value;
-//       data[coin].prise = Number(node[9].value);
-//       divEdit.style.display = 'none';
-//       add(data);
-//     }
-//   });
-// }
-
 add();
-// del();
-// close();
-// save();
