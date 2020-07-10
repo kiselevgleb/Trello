@@ -10,6 +10,7 @@
     "no-use-before-define": "off",
     "max-len": "off",
     "import/extensions": "off",
+"no-useless-concat": "off",
     "no-restricted-syntax": [
       "error",
       "LabeledStatement",

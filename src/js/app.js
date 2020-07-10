@@ -155,7 +155,6 @@ function move() {
   let ghostEl = null;
 
   divMove.addEventListener('mousedown', (evt) => {
-
     if (!evt.target.classList.contains('dataText')) {
       return;
     }
@@ -174,7 +173,7 @@ function move() {
     ghostEl.style.left = `${evt.pageX - ghostEl.offsetWidth / 2}px`;
     ghostEl.style.top = `${evt.pageY - ghostEl.offsetHeight / 2}px`;
   });
-  divMove.addEventListener('mouseleave', (evt) => {
+  divMove.addEventListener('mouseleave', () => {
     if (!draggedEl) {
       return;
     }
