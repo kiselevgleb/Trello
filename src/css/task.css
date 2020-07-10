@@ -1,0 +1,216 @@
+body {
+  background-color: rgb(78, 197, 245);
+  font-family: Arial, sans-serif;
+  text-align: left;
+}
+
+div {
+  vertical-align: text-top;
+}
+
+.table {
+  width: 33%;
+  /* border:1px double #868686; */
+  border-radius: 5px;
+  display: inline-block;
+  background-color: rgb(233, 233, 233);
+  padding: 5px;
+  vertical-align: top;
+
+}
+.title{
+  font-family: Arial, sans-serif;
+}
+td,
+th,
+td {
+  /* display: block; */
+  width: 30%;
+  border: 0px double #868686;
+  padding: 5px 20px 5px 20px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+input {
+  height: 50px;
+  width: inherit;
+  border: 0px double #868686;
+  margin-top: 10px;
+  padding: 5px;
+  vertical-align: super;
+}
+
+input:focus {
+  outline: none;
+
+}
+
+th {
+  background-color: rgb(233, 233, 233);
+
+}
+
+.plus {
+  display: inline-block;
+  opacity: 0.3;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+
+}
+
+.plus:hover {
+  opacity: 1;
+}
+
+.plus:before,
+.plus:after {
+  display: inline-block;
+  content: ' ';
+  background-color: #333;
+}
+
+.plus:before {
+  transform: rotate(90deg);
+}
+
+.plus:after {
+  transform: rotate(-0deg);
+}
+
+.dataText {
+  cursor: pointer;
+}
+
+.dataText:hover .del {
+  opacity: 1;
+}
+
+.del {
+  display: inline-block;
+  opacity: 0;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  float: right;
+  text-align: right;
+}
+
+.del:hover {
+  opacity: 1;
+}
+
+.del:before,
+.del:after {
+  display: inline-block;
+  content: ' ';
+  background-color: #333;
+}
+
+.del:before {
+  transform: rotate(90deg);
+}
+
+.del:after {
+  transform: rotate(-0deg);
+}
+
+
+
+.add {
+  margin-right: 15px;
+  border: 0px double #868686;
+  background-color: rgb(96, 151, 91);
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  outline: none;
+  cursor: pointer;
+
+}
+
+.add:focus {
+  background-color: rgb(148, 190, 145);
+
+}
+
+.dragged {
+  border-radius: 10px;
+  position: absolute;
+  z-index: 999;
+  pointer-events: none;
+  background: #fff;
+}
+
+/* .note {
+  width: 290px;
+  height: 150px;
+  border: 1px double #c7c7c7;
+  border-radius: 5px;
+  padding: 5px;
+  display: none;
+  position: absolute;
+  top: 30px;
+  background-color: white;
+} */
+h3 {
+  display: inline;
+}
+
+input {
+  display: block;
+  width: 96%;
+  border-radius: 5px;
+}
+
+.butSave {
+  margin-top: 10px;
+}
+
+p {
+  margin: 3px;
+}
+
+.er {
+  color: red;
+  font-size: small;
+}
+
+
+.butDel {
+  position: relative;
+  /* left: 280px; */
+  top: 4px;
+  width: 22px;
+  height: 22px;
+  opacity: 0.3;
+  background-color: white;
+  cursor: pointer;
+}
+
+.butDel:hover {
+  opacity: 1;
+}
+
+.butDel:before,
+.butDel:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 13px;
+  width: 2px;
+  background-color: #333;
+}
+
+.butDel:before {
+  transform: rotate(45deg);
+}
+
+.butDel:after {
+  transform: rotate(-45deg);
+}
+
+.butEd {
+  cursor: pointer;
+}
